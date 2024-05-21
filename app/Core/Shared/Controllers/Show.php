@@ -1,26 +1,26 @@
 <?php
 namespace Core\Shared\Controllers;
 
-// use Illuminate\Http\Request;
-// use Core\Enterprises\Controllers\EnterpriseController;
 use Core\Helpers\{ApiResponse, Messages};
 use Exception;
 
 trait Show
 {
-    public function show($uuid)
+    public function show($code)
     {
-        // $enterprise = $request->input('enterprise');
-        // $verify = (new EnterpriseController())->verify($enterprise);
-        // if (!$verify) return (new EnterpriseController())->invalidSerial();
-
         try {
-            $model = $this->model->findOrFail($uuid)->toArray();
 
-            // $model = $this->model->findOrFail($request->input('uuid'))->toArray();
+            $model = $this->model->findOrFail($code)
+            ->select('products.code', 'products.description', 'ps.stock')
+            ->leftjoin('products_stock as ps', 'ps.product_code', 'products.code')
+            ->where('products.code', $code)
+            ->where('ps.locations', '00')
+            ->paginate(10)            
+            ->toArray();
+
         } catch (Exception $e) {
             $message = Messages::$notRecordFound;
-            return (new ApiResponse(false, $message))->execute();
+            return (new ApiResponse(false, 'Error: ' . $e->getMessage()))->execute();
         }
 
         $message  = '1 ' . Messages::$recordsFound;

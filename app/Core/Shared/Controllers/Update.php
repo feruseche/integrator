@@ -3,31 +3,37 @@
 namespace Core\Shared\Controllers;
 
 use Illuminate\Http\Request;
-// use Core\Enterprises\Controllers\EnterpriseController;
 use Core\Helpers\{ApiResponse, Messages};
 use Exception;
 
-
 trait Update
 {
-    public function update(Request $request, $uuid)
+    public function update(Request $request, $code)
     {
         try {
-            $modelUpdate = $this->model->findOrFail($uuid)->update($request->toArray());
-        } catch (Exception $e) {
-            $message = Messages::$errorServer;
-            return (new ApiResponse(false, $message))->execute();
-        }
 
-        try {
-            if ($modelUpdate) $model = $this->model->findOrFail($uuid);
+            $new_stock = $request->input('stock');
+
+            $modelUpdate = $this->stock->findOrFail($code);
+
+/*            $modelUpdate = $this->stock::updateOrCreate(
+                ['product_code' => $code], 
+                ['stock' => $new_stock], 
+                ['locations' => '00'])
+            ->where('locations', '00');
+*/        
+            $modelUpdate->stock = $new_stock;
+            $modelUpdate->save();
+
         } catch (Exception $e) {
-            $message = Messages::$notRecordFound;
-            return (new ApiResponse(false, $message))->execute();
+
+            $message = Messages::$errorServer;
+            return (new ApiResponse(false, $e->getMessage()))->execute();
+
         }
 
         $message  = Messages::$updatedRecord;
 
-        return (new ApiResponse(true, $message, $model->toArray()))->execute();
+        return (new ApiResponse(true, $message, $modelUpdate->toArray()))->execute();
     }
 }

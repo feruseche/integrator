@@ -29,3 +29,28 @@ class Product extends Model
         return 'code';
     }
 }
+
+class Stock extends Model
+{
+    //use HasFactory;
+
+    protected $table     = 'products_stock';
+
+    protected $primaryKey = 'product_code';
+
+    protected $perPage   = 10;
+    protected $fillable  = [
+        "product_code", "locations", "stock"
+    ];
+    protected $appends   = [];
+    public $timestamps   = false;
+    public $incrementing = false;
+
+    protected $hidden = [
+    ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'product_code';
+    }
+}
