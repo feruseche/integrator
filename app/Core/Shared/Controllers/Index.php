@@ -17,6 +17,7 @@ trait Index
                 ->leftjoin('products_stock as ps', 'ps.product_code', 'products.code')
                 ->leftjoin('products_units as pu', 'pu.product_code', 'products.code')
                 ->where('ps.locations', '00')
+                ->where('ps.store', '00')
                 ->where('pu.unit', '00')
                 ->paginate(10000)
                 ->toArray();
@@ -31,3 +32,5 @@ trait Index
         return (new ApiResponse(true, $message, $model))->execute();
     }
 }
+
+

@@ -29,17 +29,18 @@ class ProductController extends Controller
         try {
             $products = DB::table('products as p')
                 ->select(
-                                'p.code as barcode', 
-                                'p.description as name',
-                                'ps.stock as stock',
-                                'pu.unitary_cost as cost', 
-                                DB::raw("(pu.maximum_price + (pu.maximum_price * (t.aliquot/100))) as price")
+                            'p.code as barcode', 
+                            'p.description as name',
+                            'ps.stock as stock',
+                            'pu.unitary_cost as cost', 
+                            DB::raw("(pu.maximum_price + (pu.maximum_price * (t.aliquot/100))) as price")
                         )
                 ->leftjoin('products_stock as ps', 'ps.product_code', 'p.code')
                 ->leftjoin('products_units as pu', 'pu.product_code', 'p.code')
                 ->leftjoin('taxes as t', 't.code', 'p.sale_tax')
                 ->where('pu.main_unit', true)
-                ->where('ps.stock', '>', 1)
+                ->where('ps.stock', '>=', 1)
+                ->where([['p.code' , '!=', '7595826004309'], ['p.code', '!=', '7591224005832'], ['p.code', '!=', '7700304812974'], ['p.code', '!=', 'HORT22']])
                 ->orderby('pu.maximum_price', 'desc')
                 ->paginate(5000)
                 ->toArray();
@@ -48,10 +49,11 @@ class ProductController extends Controller
 
             $message  = $products['total'] . ' ' . Messages::$recordsFound;
 
-            //return (new ApiResponse(true, $message, $products))->execute();
+            //return (new ApiResponse(true, $message, $products))->execute();            
+            
+                //$response = Http::post('http://localhost:8000/api/recibir-inventario', [
 
-            //$response = Http::post('http://localhost:8001/api/recibir-inventario', [
-            $response = Http::post('https://mercarapid.nks-sistemas.net/api/recibir-inventario', [
+                $response = Http::post('https://mercarapid.nks-sistemas.net/api/recibir-inventario', [
                     'store' => '91bc2ca9-be3c-40c6-9431-2512ab1d7c07',
                     'productos' => $products,
                 ]);
