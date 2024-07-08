@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c491b8531eec05ba41a11d9276a5749",
+    "content-hash": "79119da8cf982f13d1a4ea0c2fcd89f3",
     "packages": [
         {
             "name": "brick/math",
@@ -1049,6 +1049,72 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "hisamu/php-xbase",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luads/php-xbase.git",
+                "reference": "e818e3526102a20b7d9c7e1b14feef686c973a5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luads/php-xbase/zipball/e818e3526102a20b7d9c7e1b14feef686c973a5d",
+                "reference": "e818e3526102a20b7d9c7e1b14feef686c973a5d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0||^8.0||^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "XBase\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luã de Souza",
+                    "email": "lsouza@codeinc.com.br"
+                },
+                {
+                    "name": "Erwin Kooi",
+                    "email": "info@cyane.nl"
+                },
+                {
+                    "name": "Alexander Strizhak",
+                    "email": "gam6itko@gmail.com"
+                }
+            ],
+            "description": "A simple parser for *.dbf, *.fpt files using PHP",
+            "homepage": "https://github.com/luads/php-xbase",
+            "keywords": [
+                "dbase",
+                "dbf",
+                "foxpro"
+            ],
+            "support": {
+                "issues": "https://github.com/luads/php-xbase/issues",
+                "source": "https://github.com/luads/php-xbase/tree/2.1.3"
+            },
+            "time": "2022-06-07T10:51:07+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2399,6 +2465,72 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "org.majkel/dbase",
+            "version": "1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/majkel89/dbase.git",
+                "reference": "f13207172916cc4b0e248d2cafd4e4ef13877885"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/majkel89/dbase/zipball/f13207172916cc4b0e248d2cafd4e4ef13877885",
+                "reference": "f13207172916cc4b0e248d2cafd4e4ef13877885",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "athletic/athletic": "^0.1.8",
+                "ext-iconv": "*",
+                "phpunit/phpunit": "4.*",
+                "ptrofimov/xpmock": "1.*",
+                "squizlabs/php_codesniffer": "2.*",
+                "symfony/yaml": "~2.1"
+            },
+            "suggest": {
+                "ext-iconv": "CharsetFilter will not work without it"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "org\\majkel\\dbase\\": "src/",
+                    "org\\majkel\\dbase\\tests\\": "tests/",
+                    "org\\majkel\\dbase\\benchmarks\\": "benchmarks/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "majkel",
+                    "email": "maf.michal@gmail.com",
+                    "homepage": "https://github.com/majkel89",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tomáš Prokop",
+                    "homepage": "https://github.com/naril",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Library to access dbase / xbase / dbf database files",
+            "homepage": "https://github.com/majkel89",
+            "keywords": [
+                "dbase",
+                "dbf",
+                "xbase"
+            ],
+            "support": {
+                "issues": "https://github.com/majkel89/dbase/issues",
+                "source": "https://github.com/majkel89/dbase/tree/master"
+            },
+            "time": "2018-09-15T21:54:01+00:00"
         },
         {
             "name": "phpoption/phpoption",

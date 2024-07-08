@@ -5,17 +5,18 @@ namespace Core\Products\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Product extends Model
 {
     //use HasFactory;
 
-    protected $table     = 'products';
+    protected $table     = 'products_ally';
 
-    protected $primaryKey = 'code';
+    //protected $primaryKey = 'barcode';
 
     protected $perPage   = 10;
     protected $fillable  = [
-        "code", "description", "sale_tax" 
+        "barcode", "name", "stock", "price" 
     ];
     protected $appends   = [];
     public $timestamps   = false;
@@ -26,21 +27,21 @@ class Product extends Model
 
     public function getRouteKeyName(): string
     {
-        return 'code';
+        return 'barcode';
     }
 }
 
-class Stock extends Model
+class ProductUltimate extends Model
 {
     //use HasFactory;
 
-    protected $table     = 'products_stock';
+    protected $table     = 'products_ultimate';
 
-    protected $primaryKey = 'product_code';
+    protected $primaryKey = 'barcode';
 
     protected $perPage   = 10;
     protected $fillable  = [
-        "product_code", "locations", "stock"
+        "barcode", "name", "stock", "price" 
     ];
     protected $appends   = [];
     public $timestamps   = false;
@@ -51,6 +52,56 @@ class Stock extends Model
 
     public function getRouteKeyName(): string
     {
-        return 'product_code';
+        return 'barcode';
+    }
+}
+
+class ProductPenultimate extends Model
+{
+    //use HasFactory;
+
+    protected $table     = 'products_penultimate';
+
+    protected $primaryKey = 'barcode';
+
+    protected $perPage   = 10;
+    protected $fillable  = [
+        "barcode", "name", "stock", "price" 
+    ];
+    protected $appends   = [];
+    public $timestamps   = false;
+    public $incrementing = false;
+
+    protected $hidden = [
+    ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'barcode';
+    }
+}
+
+class ProductUpload extends Model
+{
+    //use HasFactory;
+
+    protected $table     = 'products_upload';
+
+    protected $primaryKey = 'barcode';
+
+    protected $perPage   = 10;
+    protected $fillable  = [
+        "barcode", "name", "stock", "price" 
+    ];
+    protected $appends   = [];
+    public $timestamps   = false;
+    public $incrementing = false;
+
+    protected $hidden = [
+    ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'barcode';
     }
 }
