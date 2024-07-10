@@ -1,0 +1,18 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `nks`.`integrator`()
+BEGIN
+	
+INSERT INTO products_ultimate(barcode, name, stock, price) 
+SELECT barcode, name, stock, price FROM products_ally AS ultimate
+ON DUPLICATE KEY UPDATE stock = ultimate.stock, price = ultimate.price;
+
+INSERT INTO products_upload(barcode, name, stock, price)
+SELECT pu.barcode, pu.name, pu.stock, pu.price 
+FROM products_ultimate pu 
+JOIN products_penultimate ppu on ppu.barcode = pu.barcode 
+WHERE pu.stock != ppu.stock OR pu.price != ppu.price; 
+
+INSERT INTO products_penultimate(barcode, name, stock, price) 
+SELECT barcode, name, stock, price FROM products_ultimate AS penultimate
+ON DUPLICATE KEY UPDATE stock = penultimate.stock, price = penultimate.price;
+
+END
