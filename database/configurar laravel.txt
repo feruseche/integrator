@@ -1,0 +1,24 @@
+sudo chown -R www-data: storage
+sudo chmod -R 755 storage
+
+sudo chown -R www-data: bootstrap/cache
+sudo chmod -R 755 bootstrap/cache
+
+sudo a2enmod rewrite
+
+sudo a2ensite nombre_de_tu_vh
+sudo a2dissite 000-default
+sudo apache2ctl configtest
+sudo service apache2 reload
+
+ServerAdmin feruseche@gmail.com
+ServerName tabaco.nks-sistemas.net
+DocumentRoot /var/www/html/sistematabaco/public
+<Directory /var/www/html/sistematabaco/public/>
+        RewriteEngine On
+        RewriteBase /var/www/html/sistematabaco/public/
+        Options -Indexes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require all granted
+</Directory>
+

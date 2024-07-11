@@ -1,0 +1,6 @@
+@reboot cd /home/server/Mercarapi/integrator7/; /usr/bin/php -q artisan serve >> /tmp/artisan.log 2>&1
+@hourly cd /home/server/Mercarapi/integrator7/; /usr/bin/php -q artisan serve >> /tmp/artisan.log 2>&1
+
+*/5 * * * * /usr/bin/curl --silent http://localhost:8000/api/enviar-inventario >> /tmp/mercarapi.log >> 2>&1
+
+
