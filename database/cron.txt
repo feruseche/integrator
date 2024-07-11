@@ -4,3 +4,9 @@
 */5 * * * * /usr/bin/curl --silent http://localhost:8000/api/enviar-inventario >> /tmp/mercarapi.log >> 2>&1
 
 
+
+antes de la migracion de le estrucutra de la base de datos
+utf8mb4_0900_ai_ci
+
+utf8mb4_general_ci
+

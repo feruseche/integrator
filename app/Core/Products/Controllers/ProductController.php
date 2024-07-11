@@ -67,7 +67,7 @@ class ProductController extends Controller
             
             $response = Http::post('https://mercarapid.nks-sistemas.net/api/recibir-inventario', [
                 'store' => '91bc2ca9-be3c-40c6-9431-2512ab1d7c07',
-                'productos' => ["data" => $products_nexus]
+                'productos' => ["data" => $products_upload]
             ]);
 
             return ($response->ok())
@@ -131,7 +131,7 @@ class ProductController extends Controller
 
         $response = Http::post('https://mercarapid.nks-sistemas.net/api/recibir-inventario', [
                     'store' => '76669646-d5a2-4dcd-b134-429bc2906c48',
-                    'productos' => ["data" => $products_nexus],
+                    'productos' => ["data" => $products_upload],
                 ]);
 
         return ($response->ok())
